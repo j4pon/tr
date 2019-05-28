@@ -1,8 +1,14 @@
 import Vue from 'vue'
 import App from './App.vue'
 import jquery from 'jquery'
+import axios from 'axios'
 window.$ = jquery
 window.jQuery = jquery
+
+axios.defaults.headers.post['Content-Type'] = 'application/json; charset=utf-8'
+axios.defaults.method = 'post'
+Vue.prototype.$http = axios
+Vue.prototype.$axios = axios
 
 import router from './router/index'
 import store from './store'

@@ -20,12 +20,14 @@
                         <td><input type="text" class="k-textbox"></td>
                         <td>Pais</td>
                         <td>
+                            <kendo-datasource ref="remoteDSPais" :server-filtering="true" :filter="filterConfiguration" :transport-read="gePaisPost" :schema-parse="parseData" />
+
                             <kendo-dropdownlist v-model="datoPais"
-                            :data-source="dataPais"
-                            :data-text-field="'text'"
-                            :data-value-field="'value'"
+                            :data-source-ref="'remoteDSPais'"
+                            :data-text-field="'value'"
+                            :data-value-field="'key'"
                             :filter="'contains'">
-                            </kendo-dropdownlist>                        
+                            </kendo-dropdownlist>                           
                         </td>
                         <td>Empresa</td>
                         <td>
@@ -285,6 +287,23 @@
 
                 return kendo.template(templateHtml);
             },
+            gePaisPost: function(http) {
+                var that = this;
+                this.$axios({
+                        method: 'POST',
+                        url: '/pais',
+                        data: {}
+                    })
+                    .then(function(response) {
+                        const respuesta = response.data
+                        if (respuesta.status) {
+                            http.success(respuesta);
+                        }
+                    })
+            },
+            parseData: function(response) {
+                return response.msgdata;
+            },               
         }      
     }
 </script>
