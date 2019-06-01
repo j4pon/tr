@@ -17,16 +17,7 @@ public class App {
 	public static void main(String[] args) {
 
 		staticFiles.location("/public");
-        post("/pais", Restfull::getData, new JsonTransformer());
-        post("/estado", Restfull::getData, new JsonTransformer());
-        post("/canal", Restfull::getData, new JsonTransformer());	
-        post("/producto", Restfull::getData, new JsonTransformer());	
-        post("/tipo", Restfull::getData, new JsonTransformer());	
-        post("/subtipo", Restfull::getData, new JsonTransformer());	
-        post("/procedencia", Restfull::getData, new JsonTransformer());	
-        post("/departamento", Restfull::getData, new JsonTransformer());	
-        post("/perfil", Restfull::getData, new JsonTransformer());	
-        post("/agencia", Restfull::getData, new JsonTransformer());
+        post("/drop", Restfull::getData, new JsonTransformer());
         
 		get("/hello", (request, response) -> {
 			Map<String, Object> model = new HashMap<>();

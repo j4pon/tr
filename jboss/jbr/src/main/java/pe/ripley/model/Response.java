@@ -1,12 +1,19 @@
 
 package pe.ripley.model;
 
+import java.util.ArrayList;
+
 public class Response {
-    private String msgcode;
+    private String msgcode = "1";
     private String msgtext;
-    private Object msgdata;
+    private Object msgdata = new Object();
     private boolean status = false;
 
+    public Response(Exception e){
+    	System.out.println(e.getMessage());
+    	this.msgdata = e.getMessage();
+    }
+    
     public Response(String msgcode, String msgtext, Object msgdata) {
         this.msgcode = msgcode;
         this.msgtext = msgtext;
@@ -14,7 +21,16 @@ public class Response {
         this.status = true;
     }
 
-    public String getMsgcode() {
+    
+    public boolean isStatus() {
+		return status;
+	}
+
+	public void setStatus(boolean status) {
+		this.status = status;
+	}
+
+	public String getMsgcode() {
         return msgcode;
     }
 
