@@ -271,7 +271,7 @@ import mixins from "~/mixins";
                 optionLabel: {
                     value: "Select a product...",
                     key: ""
-                }
+                },
                 take:10,
                 columns: [
                     {

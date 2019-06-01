@@ -20,55 +20,87 @@
                         <td><input type="text" class="k-textbox"></td>
                         <td>Pais</td>
                         <td>
-                            <kendo-dropdownlist v-model="datoPais"
-                            :data-source="dataPais"
-                            :data-text-field="'text'"
-                            :data-value-field="'value'"
+                            <kendo-datasource 
+                            ref="remote1" 
+                            :transport-read-url="'/drop?id=01'"
+                            :transport-read-type="'POST'" 
+                            :transport-read-content-type="'application/json; charset=utf-8'"
+                            :transport-read-data-type="'json'"
+                            :schema-parse="parseData" />
+                            <kendo-dropdownlist v-model="filtro.pais"
+                            :options-label="optionLabel"
+                            :data-source-ref="'remote1'"
+                            :data-text-field="'value'"
+                            :data-value-field="'key'"
                             :filter="'contains'">
-                            </kendo-dropdownlist>                        
+                            </kendo-dropdownlist>                       
                         </td>
                         <td>Empresa</td>
                         <td>
-                            <kendo-dropdownlist v-model="datoPais"
-                            :data-source="dataPais"
-                            :data-text-field="'text'"
-                            :data-value-field="'value'"
+                            <kendo-datasource 
+                            ref="remote2" 
+                            :transport-read-url="'/drop?id=02'"
+                            :transport-read-type="'POST'" 
+                            :transport-read-content-type="'application/json; charset=utf-8'"
+                            :transport-read-data-type="'json'"
+                            :schema-parse="parseData" />
+                            <kendo-dropdownlist v-model="filtro.empresa"
+                            :options-label="optionLabel"
+                            :data-source-ref="'remote2'"
+                            :data-text-field="'value'"
+                            :data-value-field="'key'"
                             :filter="'contains'">
-                            </kendo-dropdownlist>                         
+                            </kendo-dropdownlist>                          
                         </td>
                     </tr>
                     <tr>
                         <td>Estado de carga</td>
                         <td>
-                            <kendo-dropdownlist v-model="datoPais"
-                            :data-source="dataPais"
-                            :data-text-field="'text'"
-                            :data-value-field="'value'"
+                            <kendo-datasource 
+                            ref="remote12" 
+                            :transport-read-url="'/drop?id=12'"
+                            :transport-read-type="'POST'" 
+                            :transport-read-content-type="'application/json; charset=utf-8'"
+                            :transport-read-data-type="'json'"
+                            :schema-parse="parseData" />
+                            <kendo-dropdownlist v-model="filtro.estadocarga"
+                            :options-label="optionLabel"
+                            :data-source-ref="'remote12'"
+                            :data-text-field="'value'"
+                            :data-value-field="'key'"
                             :filter="'contains'">
-                            </kendo-dropdownlist>                         
+                            </kendo-dropdownlist>                          
                         </td>
                         <td>Codigo Campaña</td>
                         <td>
-                            <input type="text" class="k-textbox">
+                            <input type="text" v-model="filtro.codigocampana" class="k-textbox">
                         </td>                  
                         <td>Estado Campaña</td>
                         <td>
-                            <kendo-dropdownlist v-model="datoPais"
-                            :data-source="dataPais"
-                            :data-text-field="'text'"
-                            :data-value-field="'value'"
+                            <kendo-datasource 
+                            ref="remote13" 
+                            :transport-read-url="'/drop?id=13'"
+                            :transport-read-type="'POST'" 
+                            :transport-read-content-type="'application/json; charset=utf-8'"
+                            :transport-read-data-type="'json'"
+                            :schema-parse="parseData" />
+                            <kendo-dropdownlist v-model="filtro.estadocampana"
+                            :options-label="optionLabel"
+                            :data-source-ref="'remote13'"
+                            :data-text-field="'value'"
+                            :data-value-field="'key'"
                             :filter="'contains'">
-                            </kendo-dropdownlist>                        
+                            </kendo-dropdownlist>                       
                         </td>
                     </tr>
                     <tr>
                         <td>Inicio carga</td>
                         <td>
-                            <kendo-datepicker :format="'yyyy/MMMM/dd'"></kendo-datepicker>
+                            <kendo-datepicker v-model="filtro.inicio" :format="'yyyy/MMMM/dd'"></kendo-datepicker>
                         </td>
                         <td>Fin carga</td>
                         <td>
-                            <kendo-datepicker :format="'yyyy/MMMM/dd'"></kendo-datepicker>
+                            <kendo-datepicker v-model="filtro.fin" :format="'yyyy/MMMM/dd'"></kendo-datepicker>
                         </td>
                         <td>&nbsp;</td>
                         <td>&nbsp;</td>
@@ -96,28 +128,52 @@
                     <tr>
                         <td>Campaña</td>
                         <td>
-                            <kendo-dropdownlist v-model="datoPais"
-                            :data-source="dataPais"
-                            :data-text-field="'text'"
-                            :data-value-field="'value'"
+                            <kendo-datasource 
+                            ref="remote14" 
+                            :transport-read-url="'/drop?id=14'"
+                            :transport-read-type="'POST'" 
+                            :transport-read-content-type="'application/json; charset=utf-8'"
+                            :transport-read-data-type="'json'"
+                            :schema-parse="parseData" />
+                            <kendo-dropdownlist v-model="filtro.campana"
+                            :options-label="optionLabel"
+                            :data-source-ref="'remote14'"
+                            :data-text-field="'value'"
+                            :data-value-field="'key'"
                             :filter="'contains'">
                             </kendo-dropdownlist>                         
                         </td>
                         <td>Tipo archivo</td>
                         <td>
-                            <kendo-dropdownlist v-model="datoPais"
-                            :data-source="dataPais"
-                            :data-text-field="'text'"
-                            :data-value-field="'value'"
+                            <kendo-datasource 
+                            ref="remote15" 
+                            :transport-read-url="'/drop?id=15'"
+                            :transport-read-type="'POST'" 
+                            :transport-read-content-type="'application/json; charset=utf-8'"
+                            :transport-read-data-type="'json'"
+                            :schema-parse="parseData" />
+                            <kendo-dropdownlist v-model="filtro.tipoarchivo"
+                            :options-label="optionLabel"
+                            :data-source-ref="'remote15'"
+                            :data-text-field="'value'"
+                            :data-value-field="'key'"
                             :filter="'contains'">
                             </kendo-dropdownlist>                         
                         </td>
                         <td>Operación</td>
                         <td>
-                            <kendo-dropdownlist v-model="datoPais"
-                            :data-source="dataPais"
-                            :data-text-field="'text'"
-                            :data-value-field="'value'"
+                            <kendo-datasource 
+                            ref="remote16" 
+                            :transport-read-url="'/drop?id=16'"
+                            :transport-read-type="'POST'" 
+                            :transport-read-content-type="'application/json; charset=utf-8'"
+                            :transport-read-data-type="'json'"
+                            :schema-parse="parseData" />
+                            <kendo-dropdownlist v-model="filtro.operacion"
+                            :options-label="optionLabel"
+                            :data-source-ref="'remote16'"
+                            :data-text-field="'value'"
+                            :data-value-field="'key'"
                             :filter="'contains'">
                             </kendo-dropdownlist>                         
                         </td>
@@ -125,14 +181,15 @@
                     <tr>
                         <td>Fecha Carga</td>
                         <td>
-                            <kendo-datepicker :format="'yyyy/MMMM/dd'"></kendo-datepicker>                       
+                            <kendo-datepicker v-model="filtro.fechacarga" :format="'yyyy/MMMM/dd'"></kendo-datepicker>                       
                         </td>
                         <td>Ruta</td>
                         <td colspan="2">
                             <kendo-upload ref="upload"
                                 name="files"
                                 :async-save-url="'custom-save-url'"
-                                :async-remove-url="'custom-remove-url'">
+                                :async-remove-url="'custom-remove-url'"
+                                :validation-allowed-extensions='[".pdf"]'>
                             </kendo-upload>                   
                         </td>
                         <td>
@@ -168,18 +225,13 @@
 </template>
 
 <script>
+import mixins from "~/mixins";
     export default {
+        mixins:[mixins],
         data: function() {
             return {
+                filtro:{},
                 take:10,
-                datoPais: "",
-                dataPais: [
-                    { text: 'Small', value: '1' },
-                    { text: 'Medium', value: '2' },
-                    { text: 'Large', value: '3' },
-                    { text: 'X-Large', value: '4' },
-                    { text: '2X-Large', value: '5' }
-                ],
                 columns: [
                     {
                         command: [{text: "Editar", click:this.editRow }],
