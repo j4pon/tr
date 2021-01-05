@@ -23,7 +23,7 @@
     "@progress/kendo-upload-vue-wrapper": "^2019.1.220",
     "@progress/kendo-validator-vue-wrapper": "^2019.1.220",
     "@progress/kendo-window-vue-wrapper": "^2019.1.220",
-    "axios": "^0.18.0",
+    "axios": "^0.21.1",
     "bootstrap": "^4.3.1",
     "bootstrap-vue": "^2.0.0-rc.19",
     "core-js": "^2.6.5",
